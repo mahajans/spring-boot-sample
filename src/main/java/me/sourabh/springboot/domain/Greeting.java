@@ -1,5 +1,8 @@
 package me.sourabh.springboot.domain;
 
+/**
+ * Sample domain object
+ */
 public class Greeting {
 
     private long id;
@@ -25,4 +28,5 @@ public class Greeting {
                 ", name='" + name + '\'' +
                 '}';
     }
+
 }

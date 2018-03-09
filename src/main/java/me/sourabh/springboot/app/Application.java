@@ -3,8 +3,10 @@ package me.sourabh.springboot.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(scanBasePackages = "me.sourabh.springboot")
+@EnableMongoRepositories(basePackages = "me.sourabh.springboot")
 public class Application {
 
     public static void main(String[] args) {

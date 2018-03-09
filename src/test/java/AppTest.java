@@ -3,24 +3,42 @@
  */
 
 import me.sourabh.springboot.app.Application;
+import me.sourabh.springboot.domain.Product;
 import me.sourabh.springboot.service.GreetingService;
+import me.sourabh.springboot.service.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@Transactional
+@Rollback
 public class AppTest {
 
     @Autowired
     private GreetingService service;
 
-    @Test public void testAppHasAGreeting() {
+    @Autowired
+    private ProductService productService;
+
+    @Test
+    public void testAppHasAGreeting() {
         assertNotNull("app should have a greeting", service.getGreeting("adf"));
         System.out.println(service.getGreeting("test"));
+    }
+
+    @Test
+    public void testProductService() {
+        Product product = productService.createProduct("P" + System.currentTimeMillis(), "d" + System.currentTimeMillis());
+        assertNotNull(product);
+        assertNotNull(product.getId());
+        System.out.println(product);
     }
 }
